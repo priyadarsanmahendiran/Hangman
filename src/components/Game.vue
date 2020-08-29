@@ -6,7 +6,7 @@
                     <b-col>The Word: {{ stars }}</b-col>
                 </b-row>
                 <b-row>
-                    <p>Use only LowerCase letters!</p>
+                    <p>Use only LowerCase letters! It includes symbols like () and ,</p>
                 </b-row>
                 <b-row v-if="viewclueop">
                     <b-col> Country Code: {{ccode}} </b-col>
