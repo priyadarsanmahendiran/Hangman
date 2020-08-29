@@ -5,9 +5,6 @@
                 <b-row v-if="!lost_msg">
                     <b-col>The Word: {{ stars }}</b-col>
                 </b-row>
-                <b-row>
-                    <p>Use only LowerCase letters! Some of them also includes symbols like Brackets, Spaces and Commas</p>
-                </b-row>
                 <b-row v-if="viewclueop">
                     <b-col> Country Code: {{ccode}} </b-col>
                 </b-row>
@@ -20,7 +17,7 @@
                     <b-col>
                         <b-form inline class="guessform" @reset="giveup">
                             <b-form-group>
-                                <label for="guess">Guess the word</label>
+                                <label for="guess">Guess the word letter by letter</label>
                                 <b-input id="guess" v-model="form.guess" type="text" required class="mb-2 mr-sm-2 mb-sm-0" placeholder="Letter"></b-input>
                                 <b-button variant="primary" @click="guess"> Guess </b-button>
                                 <b-button type="reset" variant="danger"> Give Up </b-button>
@@ -82,20 +79,18 @@ export default {
             let rand_ind = Math.floor(Math.random() * this.countryname.length);
             let cname = this.countryname[rand_ind];
             let ccode = this.country_code[rand_ind];
-            console.log(cname,ccode);
             let i = 0;
             for(i=0;i<cname.length;i++){
                 this.stars += '*';
             }
-            this.word_count = cname.length*2;
+            this.word_count = cname.length+10;
             this.cname = cname.toLowerCase();
             this.ccode = ccode;
         })
     },
     methods: {
         guess(){
-            if(this.form.guess){
-                if(this.word_count == 1){
+            if(this.word_count == 1){
                 this.lost_msg = this.cname;
             } else {
                 let guessed_letter = this.form.guess;
@@ -122,9 +117,6 @@ export default {
                     alert('Incorrect Guess!');
                 }
                 this.form.guess='';
-            }
-            } else {
-                alert("Invalid Input!");
             }
             if(this.stars.indexOf('*') == -1){
                 this.won_msg = 'You won';
