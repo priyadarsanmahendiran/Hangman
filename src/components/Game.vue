@@ -5,6 +5,9 @@
                 <b-row v-if="!lost_msg">
                     <b-col>The Word: {{ stars }}</b-col>
                 </b-row>
+                <b-row v-if="viewclueop">
+                    <b-col> Country Code: {{ccode}} </b-col>
+                </b-row>
                 <b-row>
                     <b-col>
                         <p>Guesses remaining {{ word_count }}</p>
@@ -18,6 +21,7 @@
                                 <b-input id="guess" v-model="form.guess" type="text" required class="mb-2 mr-sm-2 mb-sm-0" placeholder="Letter"></b-input>
                                 <b-button type="submit" variant="primary"> Guess </b-button>
                                 <b-button type="reset" variant="danger"> Give Up </b-button>
+                                <b-button variant="info" v-on:click="viewclue"> View Clue </b-button>
                             </b-form-group>
                         </b-form>
                     </b-col>
@@ -57,7 +61,10 @@ export default {
             stars: '',
             word_count: 0,
             lost_msg: '',
-            won_msg: ''
+            won_msg: '',
+            country_code: [],
+            ccode: '',
+            viewclueop: false
         }
     },
     created() {
@@ -65,16 +72,20 @@ export default {
         .then((response) => {
             response.data.forEach(element => {
                 this.countryname.push(element.name);
+                this.country_code.push(element.alpha2Code);
             });
         })
         .then(() => {
-            let cname = this.countryname[Math.floor(Math.random() * this.countryname.length)];
+            let rand_ind = Math.floor(Math.random() * this.countryname.length);
+            let cname = this.countryname[rand_ind];
+            let ccode = this.country_code[rand_ind];
             let i = 0;
             for(i=0;i<cname.length;i++){
                 this.stars += '*';
             }
             this.word_count = cname.length*2;
             this.cname = cname.toLowerCase();
+            this.ccode = ccode;
         })
     },
     methods: {
@@ -116,6 +127,9 @@ export default {
         },
         giveup(){
             this.lost_msg = this.cname;
+        },
+        viewclue(){
+            this.viewclueop = true;
         }
     },
 }
