@@ -4,6 +4,8 @@
             <div v-if="!lost_msg && !won_msg">
                 <b-row v-if="!lost_msg">
                     <b-col>The Word: {{ stars }}</b-col>
+                </b-row>
+                <b-row>
                     <p>Use only LowerCase letters!</p>
                 </b-row>
                 <b-row v-if="viewclueop">
