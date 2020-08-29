@@ -1,28 +1,35 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <b-container class="text-center">
+      <router-view/>
+    </b-container>
+    <footer>
+      Made with <b-icon-heart-fill variant="danger"></b-icon-heart-fill> in VUE
+    </footer>
   </div>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
-
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
+body{
+  height: 100%;
+  width: 100%;
+  background-image: url('./assets/bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
+
+#app{
+  color: white;
+}
+
+footer{
+  padding-top: 50px;
+  font-weight: bolder;
+  font-style: italic;
+  text-align: center;
+}
+ 
 </style>
+
+

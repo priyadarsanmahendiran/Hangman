@@ -1,6 +1,11 @@
 # hangman
 
 ## Project setup
+
+```
+git clone https://github.com/priyadarsanmahendiran/Hangman.git
+```
+
 ```
 npm install
 ```
@@ -22,3 +27,5 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+© Priyadarsan Mahendiran
